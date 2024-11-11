@@ -4,9 +4,11 @@ metadata:
   name: web-service-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/load-balance: "round_robin"
 spec:
   rules:
-  - http:
+  - host: web-service.local
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -14,4 +16,4 @@ spec:
           service:
             name: web-service
             port:
-              number: 80
+              number: 5000
